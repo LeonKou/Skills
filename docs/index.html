@@ -41,8 +41,10 @@
     /* nav belongs to the first deck; every deck is a complete viewport canvas */
     .nav{position:absolute!important;top:0;left:0;right:0;width:100%;height:78px;transform:none!important;z-index:200;background:rgba(7,9,8,.92);visibility:visible;opacity:1}
     main>section{height:100svh;min-height:100svh;overflow:hidden;position:relative}
+    .hero>div:first-child{padding-right:8px;min-width:0}
+    .hero>.terminal{width:min(100%,420px);justify-self:end;margin-left:auto;transform:perspective(900px) rotateY(-10deg) rotateZ(1.5deg) translateZ(-55px);overflow:hidden}
     main>section:first-child{padding-top:130px}
-    @media(max-width:800px){main>section:first-child{padding-top:112px}}
+    @media(max-width:800px){main>section:first-child{padding-top:112px}.hero>.terminal{width:100%;transform:none;margin-top:12px}}
   </style>
 </head>
 <body>
@@ -80,7 +82,7 @@
         if (ticking) return; ticking = true;
         requestAnimationFrame(() => {
           const y = Math.min(scrollY, 680);
-          terminal.style.transform = `translate3d(0, ${y * 0.035}px, 0) rotate(${1.5 + y * 0.002}deg)`;
+          terminal.style.transform = `perspective(900px) translate3d(0, ${y * 0.02}px, -55px) rotateY(-10deg) rotateZ(${1.5 + y * 0.001}deg)`;
           ticking = false;
         });
       }, {passive:true});
