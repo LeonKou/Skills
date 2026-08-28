@@ -25,6 +25,11 @@
     .terminal{z-index:2;transform:rotateY(-12deg) rotateZ(1.5deg) translateZ(-45px);transform-origin:center right}
     select{margin-left:16px;background:#070908;color:var(--acid);border:1px solid var(--line);padding:6px 8px;font:12px 'DM Mono',monospace}
     @media(max-width:800px){.hero{grid-template-columns:1fr}.terminal{transform:none}select{margin-left:8px}}
+    /* one-screen observation deck */
+    html{scroll-snap-type:y mandatory}
+    main>section{min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center}
+    .headline-rotator{min-width:5.15em;margin-right:.08em}
+    @media(max-width:800px){main>section{min-height:100svh;padding:60px 0}.headline-rotator{min-width:4.8em;margin-right:.04em}}
   </style>
 </head>
 <body>
@@ -77,6 +82,14 @@
     function setLanguage(lang){const t=i18n[lang]||i18n.zh; document.documentElement.lang=lang==='zh'?'zh-CN':lang; document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.textContent=t[k]}); langSelect.value=lang; localStorage.setItem('sb-lang',lang)}
     if(langSelect){langSelect.addEventListener('change',e=>setLanguage(e.target.value));setLanguage(localStorage.getItem('sb-lang')||'zh')}
     addEventListener('scroll',()=>document.documentElement.style.setProperty('--scroll-depth',`${scrollY}px`),{passive:true});
+    const copy={
+      zh:{nav:['工作方式','文档 ↗'],hero:['AI-native system design protocol','把模糊想法','编译成','可执行','可追踪','可演进','可交付','蓝图。','一个面向开发者与编码智能体的引导式 Skill。15 个阶段，逐项确认，零重要约束丢失。','阅读 Skill','在 GitHub 查看','★ 给项目加星'],sec:['设计不是一次生成。','是逐步锁定。','一份蓝图。','整个团队的共同内存。','让下一次','编码更确定。','把业务知识固化成可发现、可追踪、可演进的工程基线。现在就把 Skill 放进你的项目。','查看安装说明']},
+      en:{nav:['how it works','docs ↗'],hero:['AI-native system design protocol','Compile fuzzy ideas','into a','shippable','traceable','evolving','executable',' blueprint.','A guided Skill for developers and coding agents. 15 phases. Every constraint confirmed.','Read the Skill','View on GitHub','★ Star the project'],sec:['Design is not a one-shot generation.','It is progressively locked.','One blueprint.','Your team’s shared memory.','Make the next','build more certain.','Turn business knowledge into a discoverable, traceable, evolving engineering baseline.','Read installation']},
+      ja:{nav:['仕組み','ドキュメント ↗'],hero:['AIネイティブ・システム設計','曖昧なアイデアを','','実行可能な','追跡可能な','進化する','出荷可能な',' ブループリントへ。','開発者とコーディングエージェントのための設計Skill。15段階で制約を確認します。','Skillを読む','GitHubで見る','★ Starする'],sec:['設計は一度きりではない。','段階的に確定する。','一つのブループリント。','チーム全体の共有メモリ。','次の開発を','もっと確実に。','知識を発見可能で追跡可能な基盤へ。','インストールを見る']},
+      ko:{nav:['작동 방식','문서 ↗'],hero:['AI 네이티브 시스템 설계','모호한 아이디어를','','실행 가능한','추적 가능한','진화하는','배포 가능한',' 블루프린트로.','개발자와 코딩 에이전트를 위한 가이드 Skill. 15단계로 모든 제약을 확인합니다.','Skill 읽기','GitHub에서 보기','★ Star하기'],sec:['설계는 한 번의 생성이 아닙니다.','단계적으로 확정합니다.','하나의 블루프린트.','팀 전체의 공유 메모리.','다음 개발을','더 확실하게.','비즈니스 지식을 발견 가능하고 추적 가능한 엔지니어링 기반으로 고정합니다.','설치 안내']}
+    };
+    function applyCopy(lang){const t=copy[lang]||copy.zh;const nav=document.querySelectorAll('.nav a');nav[0].textContent=t.nav[0];nav[1].textContent=t.nav[1];const h=document.querySelector('h1');const lines=h.querySelectorAll('.headline-line');lines[0].textContent=t.hero[1];lines[1].childNodes[0].textContent=t.hero[2]+' ';const ws=h.querySelectorAll('.headline-word');ws.forEach((w,i)=>w.textContent=t.hero[3+i]);lines[1].lastChild.textContent=t.hero[7];document.querySelector('.eyebrow').textContent=t.hero[0];document.querySelector('.lede').textContent=t.hero[8];const btns=document.querySelectorAll('.actions .btn');btns[0].firstChild.textContent=t.hero[9];btns[1].textContent=t.hero[10];btns[2].textContent=t.hero[11];const st=document.querySelectorAll('.section-title');st[0].innerHTML=t.sec[0]+'<br>'+t.sec[1];st[1].innerHTML=t.sec[2]+'<br>'+t.sec[3];st[2].innerHTML=t.sec[4]+'<br>'+t.sec[5];document.querySelector('.cta p').textContent=t.sec[6];document.querySelector('.cta .btn').firstChild.textContent=t.sec[7];document.documentElement.lang=lang==='zh'?'zh-CN':lang}
+    if(langSelect){langSelect.addEventListener('change',e=>applyCopy(e.target.value));applyCopy(localStorage.getItem('sb-lang')||'zh')}
   </script>
 </body>
 </html>
