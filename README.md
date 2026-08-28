@@ -1,51 +1,50 @@
-# Superpowers Skills
+# LeonKou Skills
 
-> 跨 AI 代码客户端的后端服务开发规范技能库
+> 面向 AI 编码智能体的工程化技能库：把设计决策、开发规范与可执行工作流固化进代码库。
 
-## 支持的客户端
+## 为什么是这个仓库
 
-| 客户端 | 加载方式 |
-|--------|----------|
-| Claude Code | 自动加载项目根目录的 `CLAUDE.md` |
-| OpenCode | 使用 `/skill` 命令加载 |
-| Codex | Cody 插件自动识别 `.cody/` 目录 |
+工程团队不把约定藏在聊天记录里。本仓库将可复用的 Skills、规范模板和自动化工作流版本化，让 Codex、Claude Code、Vibe Coding 工具与开发者共享同一套上下文。
 
-## 技能列表
+## Skills
 
-### Engineering
+| Skill | 用途 | 状态 |
+|---|---|---|
+| [system-blueprint](skills/system-blueprint/README.md) | 通过 15 阶段引导生成可执行系统蓝图、模块映射和开发规范基线 | stable |
 
-| 技能 | 说明 |
-|------|------|
-| [backend-dev](skills/engineering/backend-dev/SKILL.md) | 后端开发规范（API设计、数据库、响应格式、工程结构） |
-
-## 安装方式
-
-### Claude Code
-
-复制 `CLAUDE.md` 和 `skills/` 到项目根目录。
-
-### OpenCode
+## 安装
 
 ```bash
-/skill add /path/to/skills
+git clone https://github.com/LeonKou/Skills.git
+cp -R Skills/skills/system-blueprint .agents/skills/system-blueprint
 ```
 
-### system-blueprint
+Windows PowerShell：
 
-`skills/system-blueprint/` 是面向中文开发者和 AI 编码智能体的系统蓝图设计引导器。将该目录随仓库提交即可使用；详细安装、依赖处理、项目文件契约和 GitHub Pages 说明见 [system-blueprint/README.md](skills/system-blueprint/README.md)。
-
-该 Skill 不依赖运行时包。若 Skill 之间存在依赖，应在各自 `SKILL.md` 声明依赖名、版本和用途；调用前检查依赖是否可用，缺失时说明并降级，不静默修改其他 Skill。
-
-## 目录结构
-
+```powershell
+Copy-Item -Recurse .\Skills\skills\system-blueprint .agents\skills\system-blueprint
 ```
-skills/
-├── CLAUDE.md                      # Claude Code 配置
-├── README.md                      # 本文件
-├── CONTEXT.md                     # 术语表
-└── engineering/                   # 工程技能
-    └── backend-dev/
-        └── SKILL.md              # 后端开发规范
+
+安装后重新加载编码工具。中文提到“系统蓝图、架构设计、开发规范基线、需求到代码约束”等场景时即可触发。
+
+## 设计原则
+
+- 中文引导，英文稳定标识；
+- 渐进式提问，用户确认后持久化；
+- 领域优先，前后端工程内镜像对应；
+- 契约先于实现，需求到测试可追踪；
+- 只把确认后的强制规则写入规范；
+- 项目规则优先于 Skill 默认建议。
+
+## 文档与站点
+
+- [产品宣传页](https://leonkou.github.io/Skills/)
+- [system-blueprint Skill](skills/system-blueprint/SKILL.md)
+- [安装和依赖说明](skills/system-blueprint/README.md)
+
+## 贡献
+
+请提交清晰的变更说明、适用范围和验收用例。涉及通用规范的变更必须说明兼容性影响；项目专属规则应留在项目蓝图中。
 
 ## License
 

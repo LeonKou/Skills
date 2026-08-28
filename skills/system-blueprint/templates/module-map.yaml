@@ -1,0 +1,17 @@
+version: 1
+updated_at: "YYYY-MM-DDTHH:MM:SSZ"
+modules:
+  - module_id: order
+    name: order
+    display_name: 订单管理
+    description: "模块职责，以及明确不负责的内容。"
+    business_scope:
+      includes: []
+      excludes: []
+    frontend: {project: frontend, path: frontend/src/modules/order}
+    backend: {project: backend, path: backend/src/modules/order}
+    database: {path: database/modules/order, tables: []}
+    api: {contract_path: docs/api/order, ids: []}
+    events: {published: [], subscribed: []}
+    dependencies: {synchronous: [], asynchronous: [], data_read_only: [], forbidden: [direct_cross_module_table_write]}
+    status: active
