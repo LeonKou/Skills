@@ -30,6 +30,14 @@
     main>section{min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:center}
     .headline-rotator{min-width:5.15em;margin-right:.08em}
     @media(max-width:800px){main>section{min-height:100svh;padding:60px 0}.headline-rotator{min-width:4.8em;margin-right:.04em}}
+    /* fixed control deck + folding page transitions */
+    .nav{position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 56px));z-index:100;background:rgba(7,9,8,.78);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.28)}
+    main{perspective:1600px;transform-style:preserve-3d}
+    main>section{transform-style:preserve-3d;transform-origin:50% 100%;will-change:transform,opacity;backface-visibility:hidden}
+    main>section:first-child{padding-top:150px}
+    .footer{margin-top:auto;width:100%;padding-bottom:8px}
+    @media(max-width:800px){.nav{width:calc(100% - 28px)}main>section:first-child{padding-top:126px}}
+    @media(prefers-reduced-motion:reduce){main>section{transform:none!important;opacity:1!important}}
   </style>
 </head>
 <body>
@@ -90,6 +98,15 @@
     };
     function applyCopy(lang){const t=copy[lang]||copy.zh;const nav=document.querySelectorAll('.nav a');nav[0].textContent=t.nav[0];nav[1].textContent=t.nav[1];const h=document.querySelector('h1');const lines=h.querySelectorAll('.headline-line');lines[0].textContent=t.hero[1];lines[1].childNodes[0].textContent=t.hero[2]+' ';const ws=h.querySelectorAll('.headline-word');ws.forEach((w,i)=>w.textContent=t.hero[3+i]);lines[1].lastChild.textContent=t.hero[7];document.querySelector('.eyebrow').textContent=t.hero[0];document.querySelector('.lede').textContent=t.hero[8];const btns=document.querySelectorAll('.actions .btn');btns[0].firstChild.textContent=t.hero[9];btns[1].textContent=t.hero[10];btns[2].textContent=t.hero[11];const st=document.querySelectorAll('.section-title');st[0].innerHTML=t.sec[0]+'<br>'+t.sec[1];st[1].innerHTML=t.sec[2]+'<br>'+t.sec[3];st[2].innerHTML=t.sec[4]+'<br>'+t.sec[5];document.querySelector('.cta p').textContent=t.sec[6];document.querySelector('.cta .btn').firstChild.textContent=t.sec[7];document.documentElement.lang=lang==='zh'?'zh-CN':lang}
     if(langSelect){langSelect.addEventListener('change',e=>applyCopy(e.target.value));applyCopy(localStorage.getItem('sb-lang')||'zh')}
+    // Keep the footer inside the final content deck.
+    const footer=document.querySelector('.footer'), lastSection=document.querySelector('main>section:last-child');
+    if(footer && lastSection) lastSection.appendChild(footer);
+    // Scroll-driven fold: the outgoing deck falls away, the next deck stands up.
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const decks=[...document.querySelectorAll('main>section')]; let raf=0;
+      const fold=()=>{raf=0; const vh=innerHeight; decks.forEach((deck,i)=>{const r=deck.getBoundingClientRect(); const out=Math.max(0,Math.min(1,-r.top/vh)); const incoming=Math.max(0,Math.min(1,(vh-r.top)/vh)); if(r.top<0){deck.style.transform=`rotateX(${-out*72}deg) translateY(${-out*24}px) scale(${1-out*.035})`;deck.style.opacity=String(1-out*.35);deck.style.transformOrigin='50% 100%'} else if(i>0 && r.top<vh){const lift=1-incoming;deck.style.transform=`rotateX(${lift*72}deg) translateY(${lift*58}px) scale(${.965+incoming*.035})`;deck.style.opacity=String(.65+incoming*.35);deck.style.transformOrigin='50% 0%'} else {deck.style.transform='none';deck.style.opacity='1'}})};
+      addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(fold)},{passive:true}); addEventListener('resize',fold); fold();
+    }
   </script>
 </body>
 </html>
