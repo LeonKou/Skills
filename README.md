@@ -30,6 +30,12 @@
 /skill add /path/to/skills
 ```
 
+### system-blueprint
+
+`skills/system-blueprint/` 是面向中文开发者和 AI 编码智能体的系统蓝图设计引导器。将该目录随仓库提交即可使用；详细安装、依赖处理、项目文件契约和 GitHub Pages 说明见 [system-blueprint/README.md](skills/system-blueprint/README.md)。
+
+该 Skill 不依赖运行时包。若 Skill 之间存在依赖，应在各自 `SKILL.md` 声明依赖名、版本和用途；调用前检查依赖是否可用，缺失时说明并降级，不静默修改其他 Skill。
+
 ## 目录结构
 
 ```

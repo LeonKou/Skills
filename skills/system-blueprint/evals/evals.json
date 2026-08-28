@@ -1,0 +1,8 @@
+{
+  "skill_name": "system-blueprint",
+  "evals": [
+    {"id": 1, "prompt": "从零设计一个面向多门店的智能订单管理系统，按阶段提问并生成蓝图。", "expected_output": "阶段化确认、完整项目蓝图文件和规范基线。", "files": []},
+    {"id": 2, "prompt": "接管一个已有项目，读取现有规则并生成蓝图，不能覆盖冲突规范。", "expected_output": "识别现状、保留既有规则并提出冲突确认。", "files": []},
+    {"id": 3, "prompt": "开发中新增退款状态和 API 幂等要求，请更新蓝图并判断是否建议回写 Skill。", "expected_output": "影响分析、用户确认、版本化更新和独立回写提案。", "files": []}
+  ]
+}
