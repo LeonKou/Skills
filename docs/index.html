@@ -38,6 +38,11 @@
     .footer{margin-top:auto;width:100%;padding-bottom:8px}
     @media(max-width:800px){.nav{width:calc(100% - 28px)}main>section:first-child{padding-top:126px}}
     @media(prefers-reduced-motion:reduce){main>section{transform:none!important;opacity:1!important}}
+    /* nav belongs to the first deck; every deck is a complete viewport canvas */
+    .nav{position:absolute;top:0;left:0;transform:none;width:100%;z-index:20;background:rgba(7,9,8,.72)}
+    main>section{height:100svh;min-height:100svh;overflow:hidden}
+    main>section:first-child{padding-top:130px}
+    @media(max-width:800px){main>section:first-child{padding-top:112px}}
   </style>
 </head>
 <body>
@@ -101,6 +106,8 @@
     // Keep the footer inside the final content deck.
     const footer=document.querySelector('.footer'), lastSection=document.querySelector('main>section:last-child');
     if(footer && lastSection) lastSection.appendChild(footer);
+    const nav=document.querySelector('.nav'), firstSection=document.querySelector('main>section:first-child');
+    if(nav && firstSection) firstSection.prepend(nav);
     // Scroll-driven fold: the outgoing deck falls away, the next deck stands up.
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       const decks=[...document.querySelectorAll('main>section')]; let raf=0;
