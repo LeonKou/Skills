@@ -39,8 +39,8 @@
     @media(max-width:800px){.nav{width:calc(100% - 28px)}main>section:first-child{padding-top:126px}}
     @media(prefers-reduced-motion:reduce){main>section{transform:none!important;opacity:1!important}}
     /* nav belongs to the first deck; every deck is a complete viewport canvas */
-    .nav{position:absolute;top:0;left:0;transform:none;width:100%;z-index:20;background:rgba(7,9,8,.72)}
-    main>section{height:100svh;min-height:100svh;overflow:hidden}
+    .nav{position:absolute!important;top:0;left:0;right:0;width:100%;height:78px;transform:none!important;z-index:200;background:rgba(7,9,8,.92);visibility:visible;opacity:1}
+    main>section{height:100svh;min-height:100svh;overflow:hidden;position:relative}
     main>section:first-child{padding-top:130px}
     @media(max-width:800px){main>section:first-child{padding-top:112px}}
   </style>
@@ -111,7 +111,7 @@
     // Scroll-driven fold: the outgoing deck falls away, the next deck stands up.
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       const decks=[...document.querySelectorAll('main>section')]; let raf=0;
-      const fold=()=>{raf=0; const vh=innerHeight; decks.forEach((deck,i)=>{const r=deck.getBoundingClientRect(); const out=Math.max(0,Math.min(1,-r.top/vh)); const incoming=Math.max(0,Math.min(1,(vh-r.top)/vh)); if(r.top<0){deck.style.transform=`rotateX(${-out*72}deg) translateY(${-out*24}px) scale(${1-out*.035})`;deck.style.opacity=String(1-out*.35);deck.style.transformOrigin='50% 100%'} else if(i>0 && r.top<vh){const lift=1-incoming;deck.style.transform=`rotateX(${lift*72}deg) translateY(${lift*58}px) scale(${.965+incoming*.035})`;deck.style.opacity=String(.65+incoming*.35);deck.style.transformOrigin='50% 0%'} else {deck.style.transform='none';deck.style.opacity='1'}})};
+      const fold=()=>{raf=0; const vh=innerHeight; decks.forEach((deck,i)=>{if(i===0){deck.style.transform='none';deck.style.opacity='1';return} const r=deck.getBoundingClientRect(); const out=Math.max(0,Math.min(1,-r.top/vh)); const incoming=Math.max(0,Math.min(1,(vh-r.top)/vh)); if(r.top<0){deck.style.transform=`rotateX(${-out*72}deg) translateY(${-out*24}px) scale(${1-out*.035})`;deck.style.opacity=String(1-out*.35);deck.style.transformOrigin='50% 100%'} else if(r.top<vh){const lift=1-incoming;deck.style.transform=`rotateX(${lift*72}deg) translateY(${lift*58}px) scale(${.965+incoming*.035})`;deck.style.opacity=String(.65+incoming*.35);deck.style.transformOrigin='50% 0%'} else {deck.style.transform='none';deck.style.opacity='1'}})};
       addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(fold)},{passive:true}); addEventListener('resize',fold); fold();
     }
   </script>
