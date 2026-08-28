@@ -1,51 +1,76 @@
-# Superpowers Skills
+# Skills Directory
 
-> 跨 AI 代码客户端的后端服务开发规范技能库
+> 本目录用于存放可被 AI 编码智能体发现、加载和执行的项目 Skills。
 
-## 支持的客户端
+Skills 是面向特定任务的工作协议：它们不仅提供知识，还规定触发场景、提问顺序、输出格式、验证方式和变更边界。将 Skill 版本化放在项目中，可以让开发者、Codex、Claude Code、OpenCode 和其他 Vibe Coding 工具共享同一套上下文。
 
-| 客户端 | 配置文件 | 加载方式 |
-|--------|----------|----------|
-| Claude Code | `CLAUDE.md` | 自动加载项目根目录的 CLAUDE.md |
-| OpenCode | `SKILL.md` + skill tool | 使用 skill 工具加载 |
-| Codex | `cody.json` + 目录 | Cody 插件自动识别 `.cody/` |
+## 目录中的 Skill
 
-## 技能列表
+| Skill | 用途 | 入口 |
+|---|---|---|
+| `system-blueprint` | 通过 15 阶段引导生成可执行系统蓝图、领域模块映射和开发规范基线 | [`system-blueprint/SKILL.md`](system-blueprint/SKILL.md) |
 
-### Engineering
+## 如何选择 Skill
 
-| 技能 | 说明 |
-|------|------|
-| [backend-dev](/skills/engineering/backend-dev/SKILL.md) | 后端开发规范（API设计、数据库、响应格式、工程结构） |
+1. 先看 Skill 的 `description`：它决定触发范围，是最重要的发现入口；
+2. 再阅读 `SKILL.md`：了解工作流、输入要求、输出契约和安全边界；
+3. 涉及大型模板或规则时，按文档指引按需读取 `references/`，不要一次加载全部资料；
+4. 对需要生成文件的 Skill，优先使用其 `templates/` 和配套脚本；
+5. 如果多个 Skill 都可能适用，选择与用户目标最直接、输出契约最匹配的一个，并按需组合其他 Skill。
 
-## 使用方式
+## 使用技巧
 
-### Claude Code
+### 给出足够上下文
 
-将 `CLAUDE.md` 复制到你的项目根目录即可。
+说明目标、已有文件、技术栈、约束、期望输出和验收标准。对于系统设计类任务，告诉 Skill 当前处于“从零设计”“接管已有项目”还是“开发中变更”。
 
-### OpenCode
+### 让 Skill 先检查项目
 
-使用 skill 工具加载：
+不要直接要求 AI 覆盖现有实现。先让它读取项目规则、目录、配置、已有文档和测试，再提出合并方案。成熟 Skill 应保留已有约定，并把冲突列出供用户确认。
+
+### 区分事实与建议
+
+要求 AI 明确标记用户确认、项目事实、建议、假设和未决项。没有确认的内容不应被写成正式规则。
+
+### 使用渐进式工作流
+
+复杂任务应分阶段执行，每阶段确认后保存状态。中断后从工作状态继续，不要让 AI 重新猜测此前已经确认的决策。
+
+### 用结果文件验证执行
+
+检查 Skill 是否生成了约定的文件、版本、变更记录和追踪关系。对于代码或文档生成 Skill，优先运行其测试/校验脚本，再进行人工评审。
+
+## 当前目录下 Skill 的注意事项
+
+- `SKILL.md` 的 YAML frontmatter 必须保留 `name` 和 `description`；不要随意改名，否则可能导致触发失效；
+- 先读取 `SKILL.md` 再执行任务，按其中的引用规则读取 `references/`、`templates/` 和 `scripts/`；
+- 不要把项目专属事实写入通用 Skill；跨项目规范回写必须经过用户确认；
+- 不要静默覆盖项目已有的 `AGENTS.md`、规则文件、配置或文档；先比较、说明并确认；
+- Skill 的 `REQUIRED` 规则优先于默认编码偏好，但低于用户当前明确要求和项目法律/安全约束；冲突必须提报；
+- 不要把密钥、Token、密码或个人敏感数据写入 Skill、模板、评测用例或 README；
+- 多个 Skill 之间如有依赖，必须在文档中声明依赖名、版本和用途；调用前检查依赖是否可用，缺失时说明并降级，不静默修改其他 Skill；
+- 修改 Skill 后同步更新版本/变更记录和相关评测用例；不要只修改生成结果而遗漏 Skill 规范；
+- 使用当前目录的 Skill 时，输出文件默认写入当前项目，而不是 Skill 安装目录；
+- 评测用例只描述真实用户任务，不在 prompt 中注入与 Skill 无关的隐含指令。
+
+## Skill 依赖与组合
+
+Skill 默认是独立单元。确有依赖时，在 `SKILL.md` 中声明：
+
+```text
+依赖：<skill-name> >= <version>
+用途：<依赖提供的能力>
+失败策略：不可用时停止 / 降级 / 请求用户处理
 ```
-/skill china-stock-analysis
-```
 
-### Codex
+依赖不是继承关系，也不会自动覆盖项目规则。组合多个 Skill 时，先确定主 Skill 和最终输出契约，再按主 Skill 的顺序调用辅助 Skill。
 
-Cody 会自动从 `.cody/` 目录加载技能。
+## 版本与贡献
 
-## 目录结构
+- 任何行为变化都应记录变更原因、影响范围和验证方式；
+- 破坏性变化需要升级版本或提供迁移说明；
+- 新 Skill 应包含清晰的 `README.md`、安装说明和至少一个真实评测用例；
+- 提交前检查 Markdown、frontmatter、链接和示例是否可用；
+- 项目专属约束放在项目蓝图，不要污染可复用 Skill。
 
-```
-skills/
-├── README.md                      # 本文件
-├── CONTEXT.md                     # 术语表
-└── engineering/                   # 工程技能
-    └── backend-dev/
-        └── SKILL.md              # 后端开发规范
-```
-
-## License
-
-MIT
+返回仓库首页：[LeonKou Skills](../README.md)
