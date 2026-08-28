@@ -44,8 +44,13 @@
     main>section{height:100svh;min-height:100svh;overflow:hidden;position:relative}
     .hero>div:first-child{padding-right:8px;min-width:0}
     .hero>.terminal{width:min(100%,420px);justify-self:end;margin-left:auto;transform:perspective(900px) rotateY(-10deg) rotateZ(1.5deg) translateZ(-55px);overflow:hidden}
+    .hero>div:first-child{background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 88%,transparent 100%);z-index:30}
+    .hero>.terminal{z-index:1;transform:perspective(900px) rotateY(-8deg) rotateZ(1deg) translateZ(-90px) scale(.86);transform-origin:center right}
+    h1 .headline-line:nth-child(2){display:flex;align-items:baseline;gap:.22em;white-space:nowrap}
+    h1 .headline-rotator{flex:0 0 5.15em;vertical-align:baseline;margin:0}
+    h1 .headline-tail{flex:0 0 auto}
     main>section:first-child{padding-top:130px}
-    @media(max-width:800px){main>section:first-child{padding-top:112px}.hero>.terminal{width:100%;transform:none;margin-top:12px}}
+    @media(max-width:800px){main>section:first-child{padding-top:112px}.hero>div:first-child{background:none}.hero>.terminal{width:100%;transform:none;margin-top:12px}h1 .headline-line:nth-child(2){gap:.12em;white-space:normal}h1 .headline-rotator{flex-basis:4.8em}}
   </style>
 </head>
 <body>
@@ -83,7 +88,7 @@
         if (ticking) return; ticking = true;
         requestAnimationFrame(() => {
           const y = Math.min(scrollY, 680);
-          terminal.style.transform = `perspective(900px) translate3d(0, ${y * 0.02}px, -55px) rotateY(-10deg) rotateZ(${1.5 + y * 0.001}deg)`;
+          terminal.style.transform = `perspective(900px) translate3d(0, ${y * 0.02}px, -90px) rotateY(-8deg) rotateZ(${1 + y * 0.001}deg) scale(.86)`;
           ticking = false;
         });
       }, {passive:true});
