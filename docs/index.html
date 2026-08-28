@@ -13,10 +13,11 @@
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
     body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(rgba(183,255,60,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(183,255,60,.08) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
     .wrap{max-width:1180px;margin:auto;padding:0 28px}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-family:'DM Mono',monospace;font-size:13px}.brand{color:var(--acid);letter-spacing:-.03em}.brand span{color:var(--muted)}.nav a{color:var(--muted);text-decoration:none;margin-left:24px}.nav a:hover{color:var(--acid)}
-    .hero{min-height:690px;display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center;padding:76px 0 90px}.eyebrow{font:500 12px 'DM Mono',monospace;color:var(--acid);letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}.eyebrow:before{content:'↳ ';color:var(--hot)}h1{font-size:clamp(54px,8vw,108px);line-height:.92;letter-spacing:-.08em;margin:0 0 30px;font-weight:600;max-width:780px}h1 em{color:var(--acid);font-style:normal;text-shadow:0 0 28px rgba(183,255,60,.24)}.lede{font-size:20px;line-height:1.5;color:var(--muted);max-width:600px}.actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 19px;border:1px solid var(--acid);color:var(--bg);background:var(--acid);font:500 13px 'DM Mono',monospace;text-decoration:none}.btn.secondary{background:transparent;color:var(--acid);border-color:var(--line)}.btn:hover{box-shadow:0 0 24px rgba(183,255,60,.28);transform:translateY(-2px)}
+    .hero{min-height:690px;display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center;padding:76px 0 90px}.eyebrow{font:500 12px 'DM Mono',monospace;color:var(--acid);letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}.eyebrow:before{content:'↳ ';color:var(--hot)}h1{font-size:clamp(54px,8vw,108px);line-height:.92;letter-spacing:-.08em;margin:0 0 30px;font-weight:600;max-width:780px;perspective:900px}.headline-line{display:block;white-space:nowrap}.headline-line.acid{color:var(--acid);text-shadow:0 0 28px rgba(183,255,60,.24)}.headline-rotator{display:inline-block;position:relative;min-width:5.7em;height:1em;vertical-align:baseline;transform-style:preserve-3d}.headline-word{position:absolute;left:0;top:0;opacity:0;transform:translate3d(70px,0,-480px) rotateY(-36deg);filter:blur(8px);transition:opacity .7s,transform 1s cubic-bezier(.2,.8,.2,1),filter .7s}.headline-word.active{opacity:1;transform:translate3d(0,0,0) rotateY(0);filter:blur(0)}.headline-word.exit{opacity:0;transform:translate3d(-100px,0,260px) rotateY(24deg);filter:blur(5px)}.lede{font-size:20px;line-height:1.5;color:var(--muted);max-width:600px}.actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 19px;border:1px solid var(--acid);color:var(--bg);background:var(--acid);font:500 13px 'DM Mono',monospace;text-decoration:none}.btn.secondary{background:transparent;color:var(--acid);border-color:var(--line)}.btn:hover{box-shadow:0 0 24px rgba(183,255,60,.28);transform:translateY(-2px)}
     .terminal{background:#050706;border:1px solid var(--line);box-shadow:18px 18px 0 rgba(33,59,40,.28),0 0 55px rgba(183,255,60,.08);font:13px/1.75 'DM Mono',monospace;transform:rotate(1.5deg)}.termbar{height:34px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 13px;color:var(--muted)}.dot{width:8px;height:8px;border-radius:50%;background:var(--hot)}.dot:nth-child(2){background:#d5b74a}.dot:nth-child(3){background:var(--acid)}.termcode{padding:22px;color:#a6c9ad}.prompt{color:var(--acid)}.key{color:#72d6ff}.val{color:#ffb86b}.cursor{display:inline-block;width:8px;height:16px;background:var(--acid);vertical-align:-3px;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}
     section{padding:90px 0;border-top:1px solid var(--line)}.section-kicker{font:500 12px 'DM Mono',monospace;color:var(--hot);letter-spacing:.12em}.section-title{font-size:clamp(34px,5vw,64px);letter-spacing:-.06em;margin:14px 0 42px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(13,18,15,.9),rgba(8,12,9,.6));padding:25px;min-height:200px}.card:hover{border-color:var(--acid);transform:translateY(-4px);transition:.25s}.num{font:500 12px 'DM Mono',monospace;color:var(--acid)}.card h3{font-size:22px;margin:34px 0 10px}.card p{color:var(--muted);line-height:1.6;margin:0}.manifest{border:1px solid var(--line);padding:24px;font:13px/1.9 'DM Mono',monospace;color:var(--muted);background:#050706}.manifest b{color:var(--acid);font-weight:400}.manifest .ok{color:#7cff9d}.cta{display:flex;align-items:end;justify-content:space-between;gap:30px}.cta p{max-width:560px;color:var(--muted);font-size:18px;line-height:1.5}.footer{padding:30px 0 46px;color:var(--muted);font:12px 'DM Mono',monospace;display:flex;justify-content:space-between}.footer a{color:var(--acid);text-decoration:none}
-    @media(max-width:800px){.hero{grid-template-columns:1fr;gap:45px;padding-top:62px}.terminal{transform:none}.grid{grid-template-columns:1fr}.cta{display:block}.nav a{margin-left:11px}.nav a:first-child{display:none}}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;gap:45px;padding-top:62px}.terminal{transform:none}.grid{grid-template-columns:1fr}.cta{display:block}.nav a{margin-left:11px}.nav a:first-child{display:none}.headline-line{white-space:normal}.headline-rotator{min-width:5.4em}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.headline-word{transition:none;transform:none!important;filter:none!important}.headline-word.active{opacity:1}.terminal,.card,.btn{transform:none!important;transition:none!important}}
   </style>
 </head>
 <body>
@@ -24,7 +25,7 @@
     <nav class="nav"><div class="brand">system-blueprint <span>// v1.0</span></div><div><a href="#how">how it works</a><a href="../skills/system-blueprint/README.md">docs ↗</a><a href="https://github.com/LeonKou/Skills">github ↗</a><a href="https://github.com/LeonKou/Skills/star">★ star</a></div></nav>
     <main>
       <section class="hero" style="border-top:0">
-        <div><div class="eyebrow">AI-native system design protocol</div><h1>把模糊想法<br>编译成 <em>可执行</em> 蓝图。</h1><p class="lede">一个面向开发者与编码智能体的引导式 Skill。15 个阶段，逐项确认，零重要约束丢失。</p><div class="actions"><a class="btn" href="../skills/system-blueprint/SKILL.md">阅读 Skill <span>→</span></a><a class="btn secondary" href="https://github.com/LeonKou/Skills/tree/main/skills/system-blueprint">在 GitHub 查看</a><a class="btn secondary" href="https://github.com/LeonKou/Skills/star">★ 给项目加星</a></div></div>
+        <div><div class="eyebrow">AI-native system design protocol</div><h1><span class="headline-line">把模糊想法</span><span class="headline-line">编译成 <span class="headline-rotator" aria-live="polite"><span class="headline-word active">可执行</span><span class="headline-word">可追踪</span><span class="headline-word">可演进</span><span class="headline-word">可交付</span></span> 蓝图。</span></h1><p class="lede">一个面向开发者与编码智能体的引导式 Skill。15 个阶段，逐项确认，零重要约束丢失。</p><div class="actions"><a class="btn" href="../skills/system-blueprint/SKILL.md">阅读 Skill <span>→</span></a><a class="btn secondary" href="https://github.com/LeonKou/Skills/tree/main/skills/system-blueprint">在 GitHub 查看</a><a class="btn secondary" href="https://github.com/LeonKou/Skills/star">★ 给项目加星</a></div></div>
         <div class="terminal"><div class="termbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span style="margin-left:8px">blueprint_session</span></div><div class="termcode"><div><span class="prompt">$</span> blueprint init --guided</div><br><div><span class="key">phase</span>: <span class="val">07 / 15</span></div><div><span class="key">status</span>: <span class="ok">awaiting confirmation</span></div><div><span class="key">decision</span>: architecture boundary</div><div><span class="key">source</span>: user-confirmed</div><br><div><span class="prompt">$</span> persist --atomic</div><div><span class="ok">✓ working-state.md</span></div><div><span class="ok">✓ decisions.md</span></div><div><span class="ok">✓ traceability.md</span></div><br><div><span class="prompt">$</span> <span class="cursor"></span></div></div></div>
       </section>
       <section id="how"><div class="section-kicker">01 / THE PROTOCOL</div><h2 class="section-title">设计不是一次生成。<br>是逐步锁定。</h2><div class="grid"><article class="card"><div class="num">01 — ASK</div><h3>引导式提问</h3><p>从目标、角色、用例到数据、架构与部署，按 15 个阶段拆解复杂度。</p></article><article class="card"><div class="num">02 — CONFIRM</div><h3>确认才算事实</h3><p>严格区分事实、建议、假设和未决项。没有用户确认，不写入正式结论。</p></article><article class="card"><div class="num">03 — SHIP</div><h3>让智能体遵守</h3><p>自动生成 AGENTS.md 与开发规范基线，让后续 Vibe Coding 有唯一真相源。</p></article></div></section>
@@ -33,5 +34,32 @@
     </main>
     <footer class="footer"><span>LeonKou / Skills · built for deliberate shipping</span><a href="https://github.com/LeonKou/Skills">source ↗</a></footer>
   </div>
+  <script>
+    (() => {
+      const words = [...document.querySelectorAll('.headline-word')];
+      if (words.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let current = 0;
+      setInterval(() => {
+        const old = words[current];
+        current = (current + 1) % words.length;
+        old.classList.remove('active'); old.classList.add('exit');
+        words[current].classList.remove('exit'); words[current].classList.add('active');
+        setTimeout(() => old.classList.remove('exit'), 850);
+      }, 2600);
+    })();
+    (() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const terminal = document.querySelector('.terminal');
+      let ticking = false;
+      addEventListener('scroll', () => {
+        if (ticking) return; ticking = true;
+        requestAnimationFrame(() => {
+          const y = Math.min(scrollY, 680);
+          terminal.style.transform = `translate3d(0, ${y * 0.035}px, 0) rotate(${1.5 + y * 0.002}deg)`;
+          ticking = false;
+        });
+      }, {passive:true});
+    })();
+  </script>
 </body>
 </html>
