@@ -46,12 +46,13 @@
     .hero>.terminal{width:min(100%,420px);justify-self:end;margin-left:auto;transform:perspective(900px) rotateY(-10deg) rotateZ(1.5deg) translateZ(-55px);overflow:hidden}
     .hero>div:first-child{background:linear-gradient(90deg,var(--bg) 0%,var(--bg) 88%,transparent 100%);z-index:30}
     .hero>.terminal{z-index:1;transform:perspective(900px) rotateY(-8deg) rotateZ(1deg) translateZ(-90px) scale(.86);transform-origin:center right}
-    .hero>.terminal{position:sticky;top:110px;align-self:center;justify-self:end;width:min(100%,420px);transform:perspective(900px) rotateY(-7deg) rotateZ(1deg) scale(.84)!important;contain:paint;isolation:isolate}
+    .hero>.terminal{z-index:1;transform:perspective(900px) rotateY(-8deg) rotateZ(1deg) translateZ(-90px) scale(.86);transform-origin:center right;contain:paint;isolation:isolate}
+    h1 .headline-rotator{position:relative;z-index:80}
     h1 .headline-line:nth-child(2){display:flex;align-items:baseline;gap:.22em;white-space:nowrap}
     h1 .headline-rotator{flex:0 0 5.15em;vertical-align:baseline;margin:0}
     h1 .headline-tail{flex:0 0 auto}
     main>section:first-child{padding-top:130px}
-    @media(max-width:800px){main>section:first-child{padding-top:112px}.hero>div:first-child{background:none}.hero>.terminal{position:relative;top:auto;width:100%;transform:none!important;margin-top:12px}h1 .headline-line:nth-child(2){gap:.12em;white-space:normal}h1 .headline-rotator{width:5.1em}}
+    @media(max-width:800px){main>section:first-child{padding-top:112px}.hero>div:first-child{background:none}.hero>.terminal{width:100%;transform:none;margin-top:12px}h1 .headline-line:nth-child(2){gap:.12em;white-space:normal}h1 .headline-rotator{width:5.1em}}
   </style>
 </head>
 <body>
