@@ -7,7 +7,7 @@
 把系统设计、工程规范和开发上下文，变成编码智能体真正能发现并遵守的项目资产。
 
 [![GitHub stars](https://img.shields.io/github/stars/LeonKou/Skills?style=flat-square&color=b7ff3c&labelColor=070908)](https://github.com/LeonKou/Skills/stargazers)
-[![License](https://img.shields.io/badge/license-MIT-b7ff3c?style=flat-square&labelColor=070908)](LICENSE)
+[![License: 0BSD](https://img.shields.io/badge/license-0BSD-b7ff3c?style=flat-square&labelColor=070908)](LICENSE)
 [![Pages](https://img.shields.io/website?url=https%3A%2F%2Fleonkou.github.io%2FSkills%2F&style=flat-square&label=docs)](https://leonkou.github.io/Skills/)
 
 [产品主页](https://leonkou.github.io/Skills/) · [快速开始](#快速开始) · [贡献](#贡献)
@@ -98,4 +98,4 @@ Skill 默认无运行时依赖。Skill 之间如有依赖，必须在自身文�
 
 ## License
 
-MIT
+[0BSD](LICENSE) - 可自由使用、复制、修改和分发，无署名要求，仅保留免责条款。

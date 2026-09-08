@@ -74,3 +74,7 @@ Skill 默认是独立单元。确有依赖时，在 `SKILL.md` 中声明：
 - 项目专属约束放在项目蓝图，不要污染可复用 Skill。
 
 返回仓库首页：[LeonKou Skills](../README.md)
+
+## License
+
+[0BSD](../LICENSE)
